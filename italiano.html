@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Italiano 🇮🇹</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #F7F3EC;
+  --ink: #1A1714;
+  --terracotta: #C4522A;
+  --terra-light: #E8C4B2;
+  --gold: #C49A3C;
+  --sage: #6B7F5E;
+  --mist: #E8E4DC;
+  --card-bg: #FFFDF9;
+  --shadow: 0 4px 24px rgba(26,23,20,0.12);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  min-height: 100vh;
+  color: var(--ink);
+  overflow-x: hidden;
+}
+
+/* ── SCREENS ── */
+.screen { display: none; flex-direction: column; min-height: 100vh; padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom); }
+.screen.active { display: flex; }
+
+/* ── HOME ── */
+#home {
+  background: var(--ink);
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  position: relative;
+  overflow: hidden;
+}
+#home::before {
+  content: '';
+  position: absolute;
+  width: 320px; height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(196,82,42,0.25) 0%, transparent 70%);
+  top: -60px; right: -80px;
+}
+#home::after {
+  content: '';
+  position: absolute;
+  width: 240px; height: 240px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(196,154,60,0.2) 0%, transparent 70%);
+  bottom: 80px; left: -60px;
+}
+.home-inner { position: relative; z-index: 1; text-align: center; padding: 40px 32px; width: 100%; }
+.home-flag { font-size: 56px; margin-bottom: 16px; display: block; animation: float 3s ease-in-out infinite; }
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+.home-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--cream);
+  letter-spacing: -1px;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.home-sub {
+  font-size: 13px;
+  color: rgba(247,243,236,0.45);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  margin-bottom: 48px;
+}
+.stats-row { display: flex; gap: 16px; justify-content: center; margin-bottom: 40px; }
+.stat-pill {
+  background: rgba(247,243,236,0.08);
+  border: 1px solid rgba(247,243,236,0.12);
+  border-radius: 24px;
+  padding: 10px 18px;
+  text-align: center;
+}
+.stat-num { font-size: 22px; font-weight: 500; color: var(--cream); line-height: 1; }
+.stat-lbl { font-size: 10px; color: rgba(247,243,236,0.4); text-transform: uppercase; letter-spacing: .08em; margin-top: 2px; }
+.btn-primary {
+  display: block; width: 100%;
+  background: var(--terracotta);
+  color: var(--cream);
+  border: none; border-radius: 16px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 17px; font-weight: 500;
+  padding: 18px;
+  cursor: pointer;
+  transition: transform .1s, opacity .1s;
+  margin-bottom: 12px;
+}
+.btn-primary:active { transform: scale(0.97); opacity: .9; }
+.btn-secondary {
+  display: block; width: 100%;
+  background: transparent;
+  color: rgba(247,243,236,0.6);
+  border: 1px solid rgba(247,243,236,0.15);
+  border-radius: 16px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px; font-weight: 400;
+  padding: 16px;
+  cursor: pointer;
+  transition: all .15s;
+  margin-bottom: 12px;
+}
+.btn-secondary:active { background: rgba(247,243,236,0.08); }
+.due-badge {
+  display: inline-block;
+  background: var(--terracotta);
+  color: white;
+  font-size: 11px;
+  font-weight: 500;
+  border-radius: 10px;
+  padding: 2px 8px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+/* ── STUDY ── */
+#study { background: var(--cream); }
+.study-header {
+  padding: 16px 20px 8px;
+  display: flex; align-items: center; gap: 12px;
+}
+.back-btn {
+  background: var(--mist); border: none; border-radius: 10px;
+  width: 36px; height: 36px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0;
+  transition: background .15s;
+}
+.back-btn:active { background: #d8d4cc; }
+.progress-bar-wrap { flex: 1; height: 6px; background: var(--mist); border-radius: 3px; overflow: hidden; }
+.progress-bar-fill { height: 100%; background: var(--terracotta); border-radius: 3px; transition: width .4s ease; }
+.progress-text { font-size: 12px; color: #999; flex-shrink: 0; }
+
+.category-tag {
+  text-align: center;
+  font-size: 11px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  font-weight: 500;
+  padding: 4px 0 12px;
+}
+
+/* Card flip */
+.card-area { flex: 1; display: flex; align-items: center; justify-content: center; padding: 0 20px; perspective: 1000px; }
+.card-wrapper { width: 100%; max-width: 380px; }
+.flashcard {
+  width: 100%; min-height: 260px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform .5s cubic-bezier(.4,0,.2,1);
+  cursor: pointer;
+}
+.flashcard.flipped { transform: rotateY(180deg); }
+.card-face {
+  position: absolute; top: 0; left: 0; right: 0;
+  min-height: 260px;
+  background: var(--card-bg);
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 40px 32px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.card-back { transform: rotateY(180deg); }
+.card-face.front { border-top: 4px solid var(--terracotta); }
+.card-face.card-back { border-top: 4px solid var(--sage); }
+
+.card-lang {
+  font-size: 10px; letter-spacing: .15em; text-transform: uppercase;
+  color: rgba(26,23,20,0.3); font-weight: 500; margin-bottom: 16px;
+}
+.card-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px; font-weight: 500;
+  text-align: center; line-height: 1.3;
+  color: var(--ink);
+}
+.card-text.answer { font-size: 22px; color: var(--sage); font-style: italic; }
+.tap-hint {
+  margin-top: 24px;
+  font-size: 12px; color: rgba(26,23,20,0.25);
+  display: flex; align-items: center; gap: 4px;
+}
+
+/* Answer buttons */
+.answer-area { padding: 20px; display: flex; flex-direction: column; gap: 10px; }
+.answer-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+.ans-btn {
+  border: none; border-radius: 14px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px; font-weight: 500;
+  padding: 14px 8px;
+  cursor: pointer;
+  transition: transform .1s, opacity .1s;
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+}
+.ans-btn:active { transform: scale(0.95); }
+.ans-btn .ans-icon { font-size: 20px; }
+.ans-btn .ans-label { font-size: 11px; font-weight: 400; opacity: .7; }
+.btn-hard { background: #FCEAEA; color: #C0392B; }
+.btn-ok   { background: #FFF4E0; color: #B07D20; }
+.btn-easy { background: #EAF4EA; color: #2E7D32; }
+.answer-area.hidden { opacity: 0; pointer-events: none; }
+
+/* ── ADD CARD ── */
+#addcard { background: var(--cream); padding: 0; }
+.addcard-header {
+  background: var(--ink);
+  padding: 20px 20px 24px;
+  display: flex; align-items: center; gap: 12px;
+}
+.addcard-header h2 {
+  font-family: 'Playfair Display', serif;
+  color: var(--cream); font-size: 22px; font-weight: 500;
+}
+.form-body { padding: 24px 20px; flex: 1; overflow-y: auto; }
+.form-group { margin-bottom: 20px; }
+.form-label { font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: rgba(26,23,20,0.45); font-weight: 500; margin-bottom: 8px; display: block; }
+.form-input {
+  width: 100%;
+  background: var(--card-bg);
+  border: 1.5px solid var(--mist);
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  color: var(--ink);
+  outline: none;
+  transition: border-color .15s;
+  -webkit-appearance: none;
+}
+.form-input:focus { border-color: var(--terracotta); }
+.form-select {
+  width: 100%;
+  background: var(--card-bg);
+  border: 1.5px solid var(--mist);
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  color: var(--ink);
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23999' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+}
+.btn-add {
+  width: 100%;
+  background: var(--terracotta);
+  color: white;
+  border: none; border-radius: 16px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 17px; font-weight: 500;
+  padding: 18px;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: transform .1s;
+}
+.btn-add:active { transform: scale(.97); }
+.success-toast {
+  position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%) translateY(80px);
+  background: var(--ink); color: var(--cream);
+  padding: 12px 24px; border-radius: 24px;
+  font-size: 14px; font-weight: 500;
+  transition: transform .35s cubic-bezier(.4,0,.2,1);
+  z-index: 100; white-space: nowrap;
+}
+.success-toast.show { transform: translateX(-50%) translateY(0); }
+
+/* ── DONE SCREEN ── */
+#done { background: var(--ink); align-items: center; justify-content: center; text-align: center; padding: 40px 32px; }
+.done-emoji { font-size: 64px; margin-bottom: 20px; animation: bounce .6s ease; }
+@keyframes bounce { 0%{transform:scale(0)} 60%{transform:scale(1.15)} 100%{transform:scale(1)} }
+.done-title { font-family: 'Playfair Display', serif; font-size: 36px; color: var(--cream); margin-bottom: 8px; }
+.done-sub { font-size: 14px; color: rgba(247,243,236,0.5); margin-bottom: 40px; }
+</style>
+</head>
+<body>
+
+<!-- HOME -->
+<div id="home" class="screen active">
+  <div class="home-inner">
+    <span class="home-flag">🇮🇹</span>
+    <div class="home-title">Italiano</div>
+    <div class="home-sub">Reise-flashkort</div>
+    <div class="stats-row">
+      <div class="stat-pill">
+        <div class="stat-num" id="stat-total">101</div>
+        <div class="stat-lbl">Kort</div>
+      </div>
+      <div class="stat-pill">
+        <div class="stat-num" id="stat-due">0</div>
+        <div class="stat-lbl">Til repetisjon</div>
+      </div>
+      <div class="stat-pill">
+        <div class="stat-num" id="stat-streak">0</div>
+        <div class="stat-lbl">Dager streak</div>
+      </div>
+    </div>
+    <button class="btn-primary" onclick="startStudy()">
+      Øv nå <span class="due-badge" id="due-badge" style="display:none"></span>
+    </button>
+    <button class="btn-secondary" onclick="startStudy(true)">Øv alle kort</button>
+    <button class="btn-secondary" onclick="showScreen('addcard')">+ Legg til eget kort</button>
+  </div>
+</div>
+
+<!-- STUDY -->
+<div id="study" class="screen">
+  <div class="study-header">
+    <button class="back-btn" onclick="showScreen('home')">←</button>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progress-fill" style="width:0%"></div></div>
+    <div class="progress-text" id="progress-text">0/0</div>
+  </div>
+  <div class="category-tag" id="cat-tag"></div>
+  <div class="card-area">
+    <div class="card-wrapper">
+      <div class="flashcard" id="flashcard" onclick="flipCard()">
+        <div class="card-face front">
+          <div class="card-lang">Italiensk</div>
+          <div class="card-text" id="card-front-text"></div>
+          <div class="tap-hint">↕ trykk for å snu</div>
+        </div>
+        <div class="card-face card-back">
+          <div class="card-lang">Norsk</div>
+          <div class="card-text answer" id="card-back-text"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="answer-area hidden" id="answer-area">
+    <div class="answer-row">
+      <button class="ans-btn btn-hard" onclick="answer(1)"><span class="ans-icon">😓</span><span class="ans-label">Vanskelig</span></button>
+      <button class="ans-btn btn-ok"   onclick="answer(3)"><span class="ans-icon">🤔</span><span class="ans-label">Grei</span></button>
+      <button class="ans-btn btn-easy" onclick="answer(5)"><span class="ans-icon">😄</span><span class="ans-label">Lett</span></button>
+    </div>
+  </div>
+</div>
+
+<!-- ADD CARD -->
+<div id="addcard" class="screen">
+  <div class="addcard-header">
+    <button class="back-btn" style="background:rgba(255,255,255,0.1)" onclick="showScreen('home')">←</button>
+    <h2>Nytt kort</h2>
+  </div>
+  <div class="form-body">
+    <div class="form-group">
+      <label class="form-label">Italiensk</label>
+      <input class="form-input" id="new-it" type="text" placeholder="f.eks. Dove si trova...?" autocomplete="off" autocorrect="off">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Norsk oversettelse</label>
+      <input class="form-input" id="new-no" type="text" placeholder="f.eks. Hvor er...?" autocomplete="off">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Kategori</label>
+      <select class="form-select" id="new-cat">
+        <option>Høflighet</option><option>Mat og drikke</option><option>Orientering</option>
+        <option>Handel</option><option>Hotell</option><option>Nødsituasjoner</option>
+        <option>Småprat</option><option>Egne kort</option>
+      </select>
+    </div>
+    <button class="btn-add" onclick="addCard()">Legg til kort</button>
+  </div>
+</div>
+
+<!-- DONE -->
+<div id="done" class="screen">
+  <div class="done-emoji">🎉</div>
+  <div class="done-title">Bravissimo!</div>
+  <div class="done-sub" id="done-sub">Du er ferdig for i dag.</div>
+  <button class="btn-primary" onclick="showScreen('home')" style="max-width:280px">Tilbake</button>
+</div>
+
+<div class="success-toast" id="toast">✓ Kort lagt til!</div>
+
+<script>
+// ── DEFAULT CARDS ──
+const DEFAULT_CARDS = [
+  ["Ciao","Hei / Ha det","Høflighet"],["Buongiorno","God morgen / God dag","Høflighet"],
+  ["Buonasera","God kveld","Høflighet"],["Grazie","Takk","Høflighet"],
+  ["Grazie mille","Tusen takk","Høflighet"],["Prego","Vær så god","Høflighet"],
+  ["Scusi","Unnskyld","Høflighet"],["Mi dispiace","Beklager","Høflighet"],
+  ["Per favore","Vær så snill","Høflighet"],["Sì / No","Ja / Nei","Høflighet"],
+  ["Arrivederci","Ha det bra","Høflighet"],["Buonanotte","God natt","Høflighet"],
+  ["Un tavolo per due, per favore","Et bord for to, takk","Mat og drikke"],
+  ["Il menù, per favore","Menyen, takk","Mat og drikke"],
+  ["Cosa mi consiglia?","Hva anbefaler du?","Mat og drikke"],
+  ["Vorrei...","Jeg vil gjerne ha...","Mat og drikke"],
+  ["Un bicchiere di vino rosso","Et glass rødvin","Mat og drikke"],
+  ["Acqua frizzante / naturale","Kullsyreholdig / stille vann","Mat og drikke"],
+  ["Il conto, per favore","Regningen, takk","Mat og drikke"],
+  ["È delizioso!","Det er deilig!","Mat og drikke"],
+  ["Sono allergico a...","Jeg er allergisk mot...","Mat og drikke"],
+  ["Senza glutine","Glutenfritt","Mat og drikke"],
+  ["Un caffè","En espresso","Mat og drikke"],
+  ["Un cappuccino","En cappuccino","Mat og drikke"],
+  ["Dov'è...?","Hvor er...?","Orientering"],
+  ["Come arrivo a...?","Hvordan kommer jeg til...?","Orientering"],
+  ["A sinistra","Til venstre","Orientering"],
+  ["A destra","Til høyre","Orientering"],
+  ["Dritto","Rett frem","Orientering"],
+  ["Vicino / lontano","Nærme / langt unna","Orientering"],
+  ["La fermata del bus","Bussholdeplassen","Orientering"],
+  ["La stazione","Togstasjonen","Orientering"],
+  ["L'aeroporto","Flyplassen","Orientering"],
+  ["Quanto dista?","Hvor langt er det?","Orientering"],
+  ["Quanto costa?","Hva koster det?","Handel"],
+  ["È troppo caro","Det er for dyrt","Handel"],
+  ["Accettate carte di credito?","Tar dere kort?","Handel"],
+  ["Posso provare?","Kan jeg prøve det?","Handel"],
+  ["Vorrei comprare...","Jeg vil kjøpe...","Handel"],
+  ["Dov'è il mercato?","Hvor er markedet?","Handel"],
+  ["Aperto / chiuso","Åpent / stengt","Handel"],
+  ["Ho una prenotazione","Jeg har en reservasjon","Hotell"],
+  ["Vorrei una camera","Jeg vil gjerne ha et rom","Hotell"],
+  ["A che ora è il check-out?","Når er utsjekking?","Hotell"],
+  ["C'è il Wi-Fi?","Er det WiFi?","Hotell"],
+  ["La colazione è inclusa?","Er frokost inkludert?","Hotell"],
+  ["Il bagno","Badet","Hotell"],
+  ["Aiuto!","Hjelp!","Nødsituasjoner"],
+  ["Ho bisogno di un medico","Jeg trenger lege","Nødsituasjoner"],
+  ["Chiami la polizia!","Ring politiet!","Nødsituasjoner"],
+  ["Mi sono perso","Jeg har gått meg vill","Nødsituasjoner"],
+  ["Dove si trova la farmacia?","Hvor er apoteket?","Nødsituasjoner"],
+  ["Non capisco","Jeg forstår ikke","Nødsituasjoner"],
+  ["Parla inglese?","Snakker du engelsk?","Nødsituasjoner"],
+  ["Può ripetere, per favore?","Kan du gjenta, takk?","Nødsituasjoner"],
+  ["Come sta?","Hvordan har du det?","Småprat"],
+  ["Bene, grazie!","Bra, takk!","Småprat"],
+  ["Mi chiamo...","Jeg heter...","Småprat"],
+  ["Di dove sei?","Hvor er du fra?","Småprat"],
+  ["Sono norvegese","Jeg er norsk","Småprat"],
+  ["Che bello!","Så flott!","Småprat"],
+  ["Non lo so","Jeg vet ikke","Småprat"],
+  ["Capisce?","Forstår du?","Småprat"],
+];
+
+// ── STORAGE ──
+function load() {
+  try { return JSON.parse(localStorage.getItem('italiano_v2')) || {}; } catch { return {}; }
+}
+function save(d) { localStorage.setItem('italiano_v2', JSON.stringify(d)); }
+
+function initData() {
+  let d = load();
+  if (!d.cards) {
+    d.cards = DEFAULT_CARDS.map(([it, no, cat]) => ({
+      it, no, cat,
+      interval: 0, easeFactor: 2.5, due: 0, reps: 0
+    }));
+    d.streak = 0; d.lastStudy = 0; d.studiedToday = false;
+    save(d);
+  }
+  return d;
+}
+
+// ── SM-2 ──
+function sm2(card, q) {
+  // q: 1=hard, 3=ok, 5=easy
+  let ef = card.easeFactor + (0.1 - (5 - q) * (0.08 + (5 - q) * 0.02));
+  if (ef < 1.3) ef = 1.3;
+  card.easeFactor = ef;
+  if (q < 3) {
+    card.interval = 1; card.reps = 0;
+  } else {
+    if (card.reps === 0) card.interval = 1;
+    else if (card.reps === 1) card.interval = 6;
+    else card.interval = Math.round(card.interval * ef);
+    card.reps++;
+  }
+  const now = Date.now();
+  card.due = now + card.interval * 86400000;
+  return card;
+}
+
+// ── STUDY STATE ──
+let queue = [], qIndex = 0, isFlipped = false, studyAll = false;
+
+function getDueCards(d) {
+  const now = Date.now();
+  return d.cards.filter(c => c.due <= now);
+}
+
+function startStudy(all) {
+  const d = initData();
+  studyAll = !!all;
+  queue = studyAll ? [...d.cards] : getDueCards(d);
+  if (!queue.length && !studyAll) {
+    // nothing due – show all anyway
+    queue = [...d.cards];
+  }
+  // shuffle
+  for (let i = queue.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [queue[i], queue[j]] = [queue[j], queue[i]];
+  }
+  qIndex = 0;
+  showScreen('study');
+  showCard();
+}
+
+function showCard() {
+  if (qIndex >= queue.length) { finishStudy(); return; }
+  const c = queue[qIndex];
+  document.getElementById('card-front-text').textContent = c.it;
+  document.getElementById('card-back-text').textContent = c.no;
+  document.getElementById('cat-tag').textContent = c.cat;
+  const pct = Math.round((qIndex / queue.length) * 100);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-text').textContent = qIndex + '/' + queue.length;
+  // reset flip
+  isFlipped = false;
+  const card = document.getElementById('flashcard');
+  card.classList.remove('flipped');
+  document.getElementById('answer-area').classList.add('hidden');
+}
+
+function flipCard() {
+  if (isFlipped) return;
+  isFlipped = true;
+  document.getElementById('flashcard').classList.add('flipped');
+  setTimeout(() => document.getElementById('answer-area').classList.remove('hidden'), 300);
+}
+
+function answer(q) {
+  const d = initData();
+  const c = queue[qIndex];
+  // find in d.cards and update
+  const idx = d.cards.findIndex(x => x.it === c.it && x.no === c.no);
+  if (idx >= 0) { d.cards[idx] = sm2(d.cards[idx], q); }
+  // streak
+  const today = new Date().toDateString();
+  if (d.lastStudyDay !== today) {
+    const yesterday = new Date(Date.now() - 86400000).toDateString();
+    d.streak = (d.lastStudyDay === yesterday) ? (d.streak || 0) + 1 : 1;
+    d.lastStudyDay = today;
+  }
+  save(d);
+  qIndex++;
+  // brief pause then next
+  document.getElementById('answer-area').classList.add('hidden');
+  const card = document.getElementById('flashcard');
+  card.style.transition = 'none';
+  card.classList.remove('flipped');
+  setTimeout(() => { card.style.transition = ''; showCard(); }, 80);
+}
+
+function finishStudy() {
+  const d = initData();
+  document.getElementById('done-sub').textContent =
+    `${queue.length} kort øvd · Streak: ${d.streak || 1} dag${(d.streak||1)>1?'er':''}`;
+  showScreen('done');
+  updateHome();
+}
+
+// ── ADD CARD ──
+function addCard() {
+  const it = document.getElementById('new-it').value.trim();
+  const no = document.getElementById('new-no').value.trim();
+  const cat = document.getElementById('new-cat').value;
+  if (!it || !no) { document.getElementById('new-it').focus(); return; }
+  const d = initData();
+  d.cards.push({ it, no, cat, interval: 0, easeFactor: 2.5, due: 0, reps: 0 });
+  save(d);
+  document.getElementById('new-it').value = '';
+  document.getElementById('new-no').value = '';
+  const t = document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2000);
+  updateHome();
+}
+
+// ── SCREENS ──
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if (id === 'home') updateHome();
+}
+
+function updateHome() {
+  const d = initData();
+  const due = getDueCards(d).length;
+  document.getElementById('stat-total').textContent = d.cards.length;
+  document.getElementById('stat-due').textContent = due;
+  document.getElementById('stat-streak').textContent = d.streak || 0;
+  const badge = document.getElementById('due-badge');
+  if (due > 0) { badge.style.display = ''; badge.textContent = due; }
+  else { badge.style.display = 'none'; }
+}
+
+// ── INIT ──
+initData();
+updateHome();
+</script>
+</body>
+</html>
