@@ -394,17 +394,26 @@ body {
 <script>
 // ── DEFAULT CARDS ──
 const DEFAULT_CARDS = [
-  ["Ciao","Hei / Ha det","Høflighet"],["Buongiorno","God morgen / God dag","Høflighet"],
-  ["Buonasera","God kveld","Høflighet"],["Grazie","Takk","Høflighet"],
-  ["Grazie mille","Tusen takk","Høflighet"],["Prego","Vær så god","Høflighet"],
-  ["Scusi","Unnskyld","Høflighet"],["Mi dispiace","Beklager","Høflighet"],
-  ["Per favore","Vær så snill","Høflighet"],["Sì / No","Ja / Nei","Høflighet"],
-  ["Arrivederci","Ha det bra","Høflighet"],["Buonanotte","God natt","Høflighet"],
+  // Høflighet (12)
+  ["Ciao","Hei / Ha det","Høflighet"],
+  ["Buongiorno","God morgen / God dag","Høflighet"],
+  ["Buonasera","God kveld","Høflighet"],
+  ["Buonanotte","God natt","Høflighet"],
+  ["Grazie","Takk","Høflighet"],
+  ["Grazie mille","Tusen takk","Høflighet"],
+  ["Prego","Vær så god / Ingen årsak","Høflighet"],
+  ["Scusi","Unnskyld (formelt)","Høflighet"],
+  ["Mi dispiace","Beklager","Høflighet"],
+  ["Per favore","Vær så snill","Høflighet"],
+  ["Sì / No","Ja / Nei","Høflighet"],
+  ["Arrivederci","Ha det bra (formelt)","Høflighet"],
+  // Mat og drikke (16)
   ["Un tavolo per due, per favore","Et bord for to, takk","Mat og drikke"],
   ["Il menù, per favore","Menyen, takk","Mat og drikke"],
   ["Cosa mi consiglia?","Hva anbefaler du?","Mat og drikke"],
   ["Vorrei...","Jeg vil gjerne ha...","Mat og drikke"],
   ["Un bicchiere di vino rosso","Et glass rødvin","Mat og drikke"],
+  ["Un bicchiere di vino bianco","Et glass hvitvin","Mat og drikke"],
   ["Acqua frizzante / naturale","Kullsyreholdig / stille vann","Mat og drikke"],
   ["Il conto, per favore","Regningen, takk","Mat og drikke"],
   ["È delizioso!","Det er deilig!","Mat og drikke"],
@@ -412,6 +421,10 @@ const DEFAULT_CARDS = [
   ["Senza glutine","Glutenfritt","Mat og drikke"],
   ["Un caffè","En espresso","Mat og drikke"],
   ["Un cappuccino","En cappuccino","Mat og drikke"],
+  ["Il primo / il secondo","Forrett / hovedrett","Mat og drikke"],
+  ["Senza carne","Uten kjøtt","Mat og drikke"],
+  ["Il dolce","Desserten","Mat og drikke"],
+  // Orientering (12)
   ["Dov'è...?","Hvor er...?","Orientering"],
   ["Come arrivo a...?","Hvordan kommer jeg til...?","Orientering"],
   ["A sinistra","Til venstre","Orientering"],
@@ -422,19 +435,30 @@ const DEFAULT_CARDS = [
   ["La stazione","Togstasjonen","Orientering"],
   ["L'aeroporto","Flyplassen","Orientering"],
   ["Quanto dista?","Hvor langt er det?","Orientering"],
+  ["Giri a sinistra / destra","Sving til venstre / høyre","Orientering"],
+  ["Sempre dritto","Alltid rett frem","Orientering"],
+  // Handel (10)
   ["Quanto costa?","Hva koster det?","Handel"],
   ["È troppo caro","Det er for dyrt","Handel"],
   ["Accettate carte di credito?","Tar dere kort?","Handel"],
   ["Posso provare?","Kan jeg prøve det?","Handel"],
+  ["La taglia / il numero","Størrelsen (klær / sko)","Handel"],
   ["Vorrei comprare...","Jeg vil kjøpe...","Handel"],
   ["Dov'è il mercato?","Hvor er markedet?","Handel"],
   ["Aperto / chiuso","Åpent / stengt","Handel"],
+  ["Avete...?","Har dere...?","Handel"],
+  ["Lo prendo","Jeg tar den","Handel"],
+  // Hotell (9)
   ["Ho una prenotazione","Jeg har en reservasjon","Hotell"],
   ["Vorrei una camera","Jeg vil gjerne ha et rom","Hotell"],
   ["A che ora è il check-out?","Når er utsjekking?","Hotell"],
   ["C'è il Wi-Fi?","Er det WiFi?","Hotell"],
   ["La colazione è inclusa?","Er frokost inkludert?","Hotell"],
+  ["La chiave della camera","Romøkkelet","Hotell"],
   ["Il bagno","Badet","Hotell"],
+  ["C'è aria condizionata?","Er det klimaanlegg?","Hotell"],
+  ["A che ora si apre la colazione?","Når åpner frokost?","Hotell"],
+  // Nødsituasjoner (10)
   ["Aiuto!","Hjelp!","Nødsituasjoner"],
   ["Ho bisogno di un medico","Jeg trenger lege","Nødsituasjoner"],
   ["Chiami la polizia!","Ring politiet!","Nødsituasjoner"],
@@ -443,7 +467,10 @@ const DEFAULT_CARDS = [
   ["Non capisco","Jeg forstår ikke","Nødsituasjoner"],
   ["Parla inglese?","Snakker du engelsk?","Nødsituasjoner"],
   ["Può ripetere, per favore?","Kan du gjenta, takk?","Nødsituasjoner"],
-  ["Come sta?","Hvordan har du det?","Småprat"],
+  ["Ho perso il passaporto","Jeg har mistet passet mitt","Nødsituasjoner"],
+  ["Dov'è l'ospedale?","Hvor er sykehuset?","Nødsituasjoner"],
+  // Småprat (12)
+  ["Come sta? / Come stai?","Hvordan har du det? (formell/uformell)","Småprat"],
   ["Bene, grazie!","Bra, takk!","Småprat"],
   ["Mi chiamo...","Jeg heter...","Småprat"],
   ["Di dove sei?","Hvor er du fra?","Småprat"],
@@ -451,13 +478,28 @@ const DEFAULT_CARDS = [
   ["Che bello!","Så flott!","Småprat"],
   ["Non lo so","Jeg vet ikke","Småprat"],
   ["Capisce?","Forstår du?","Småprat"],
+  ["Parli italiano?","Snakker du italiensk?","Småprat"],
+  ["Un po'","Litt","Småprat"],
+  ["Sto imparando l'italiano","Jeg lærer italiensk","Småprat"],
+  ["Che cosa significa...?","Hva betyr...?","Småprat"],
+  // Tall og tid (10)
+  ["Uno, due, tre","En, to, tre","Tall og tid"],
+  ["Quattro, cinque, sei","Fire, fem, seks","Tall og tid"],
+  ["Sette, otto, nove, dieci","Sju, åtte, ni, ti","Tall og tid"],
+  ["Che ore sono?","Hva er klokken?","Tall og tid"],
+  ["Sono le tre","Klokken er tre","Tall og tid"],
+  ["Oggi / domani / ieri","I dag / i morgen / i går","Tall og tid"],
+  ["Mattina / pomeriggio / sera","Morgen / ettermiddag / kveld","Tall og tid"],
+  ["Lunedì / martedì / mercoledì","Mandag / tirsdag / onsdag","Tall og tid"],
+  ["Giovedì / venerdì","Torsdag / fredag","Tall og tid"],
+  ["Sabato / domenica","Lørdag / søndag","Tall og tid"],
 ];
 
 // ── STORAGE ──
 function load() {
-  try { return JSON.parse(localStorage.getItem('italiano_v2')) || {}; } catch { return {}; }
+  try { return JSON.parse(localStorage.getItem('italiano_v3')) || {}; } catch { return {}; }
 }
-function save(d) { localStorage.setItem('italiano_v2', JSON.stringify(d)); }
+function save(d) { localStorage.setItem('italiano_v3', JSON.stringify(d)); }
 
 function initData() {
   let d = load();
